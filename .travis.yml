@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+  - docker build -t bag-of-holding .
+
+script:
+  - docker run -d -p 8000:8000 --name boh-server bag-of-holding:latest
