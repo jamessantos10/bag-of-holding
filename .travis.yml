@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -d -p 8000:8000 --name boh-server bag-of-holding:latest
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker"
+  env: "docker-env"
+  bucket_name: "teste"
+  bucket_path: "teste"
+  on:
+    branch: master 
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
